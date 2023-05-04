@@ -85,7 +85,8 @@ function selectAnswer(e){
     const selectBtn = e.target;
     const isCorrect = selectBtn.dataset.correct === "true";
     if(isCorrect){
-        selectBtn.classList.add("correct");    
+        selectBtn.classList.add("correct");
+        score++;    
     }else{
         selectBtn.classList.add("incorrect");
     }
@@ -95,9 +96,18 @@ function selectAnswer(e){
         if(button.dataset.correct === "true") {
             button.classList.add("correct");
         }
-        button.ariaDisabled = true;
+        button.disabled = true;
     });
     nextButton.style.display = "block";
 }
+
+// function checks for questions index, and if it's less than length, function will display next button, or restart the quiz.
+nextButton.addEventListener("click", () => {
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    }else{
+        startQuiz();
+    }
+});
 
 startQuiz(); // it will call the startQuiz function and set the index and score to 0; then it will call the showQuestion with the question number and answer buttons.
