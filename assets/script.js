@@ -89,6 +89,15 @@ function selectAnswer(e){
     }else{
         selectBtn.classList.add("incorrect");
     }
+    // here function go through answer buttons and check for the answer with true;
+    // if the answer is true, function will add correct class, disable all other buttons and add the next button.
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+        button.ariaDisabled = true;
+    });
+    nextButton.style.display = "block";
 }
 
 startQuiz(); // it will call the startQuiz function and set the index and score to 0; then it will call the showQuestion with the question number and answer buttons.
