@@ -39,7 +39,7 @@ const questions = [
 
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
-const nextButton = documnet.getElementById("next-btn");
+const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -49,5 +49,21 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
-
+    showQuestion();
 }
+
+
+function showQuestion(){
+    let currentQuestion = questions[currentQuestionIndex]; // variable selects a question by it's index number from a pool of questions.
+    let questionNo = currentQuestionIndex + 1; // then adds + 1 to that question's index for display purposes.
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question; // here, we add the question to #question in index.html file.
+
+    currentQuestion.answers.forEach(answer => { // grab answers from the same pool of questions.
+        const button = document.createElement("button"); // creates a button tag and saves it as var button.
+        button.innerHTML = answer.text; // add text of an answer to the button element index.html.
+        button.classList.add("btn"); // we add class btn to a button element.
+        answerButton.appendChild(button); // we display button in answer-buttons the question and answers.
+    })
+}
+
+startQuiz(); // it will call the startQuiz function and set the index and score to 0; then it will call the showQuestion with the question number and answer buttons.
