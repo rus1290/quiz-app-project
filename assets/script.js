@@ -64,6 +64,10 @@ function showQuestion(){
         button.innerHTML = answer.text; // add text of an answer to the button element index.html.
         button.classList.add("btn"); // we add class btn to a button element.
         answerButtons.appendChild(button); // we display button in answer-buttons the question and answers.
+        if(answer.correct){ //if the answer is true, it will add correct button.
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
     })
 }
 
@@ -72,6 +76,18 @@ function resetState() {
     nextButton.style.display = "none";
     while(answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+// this function will go through button selection and check which answer is true;
+// for true answer, function will add correct class name, for false - incorrect respectively.
+function selectAnswer(e){
+    const selectBtn = e.target;
+    const isCorrect = selectBtn.dataset.correct === "true";
+    if(isCorrect){
+        selectBtn.classList.add("correct");    
+    }else{
+        selectBtn.classList.add("incorrect");
     }
 }
 
