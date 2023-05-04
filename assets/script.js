@@ -101,6 +101,16 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 }
 
+// this function will increase question index, or go to the next question.
+function handleNextButton() {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length) {
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+
 // function checks for questions index, and if it's less than length, function will display next button, or restart the quiz.
 nextButton.addEventListener("click", () => {
     if(currentQuestionIndex < questions.length){
