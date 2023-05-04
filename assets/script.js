@@ -39,3 +39,15 @@ const questions = [
 
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
+const nextButton = documnet.getElementById("next-btn");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+// function resets two variables: currentQuestionIndex and score to 0, and makes next button visible.
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+
+}
