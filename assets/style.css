@@ -71,3 +71,11 @@ body {
     background: #ffd700;
     color:#222;
 }
+
+.correct {
+    background: #9aeabc;
+}
+
+.incorrect {
+    background: #ff9393;
+}
