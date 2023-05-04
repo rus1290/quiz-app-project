@@ -38,7 +38,7 @@ const questions = [
 ];
 
 const questionElement = document.getElementById("question");
-const answerButton = document.getElementById("answer-buttons");
+const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
@@ -54,6 +54,7 @@ function startQuiz() {
 
 
 function showQuestion(){
+    resetState(); // function will reset previous question and answer.
     let currentQuestion = questions[currentQuestionIndex]; // variable selects a question by it's index number from a pool of questions.
     let questionNo = currentQuestionIndex + 1; // then adds + 1 to that question's index for display purposes.
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question; // here, we add the question to #question in index.html file.
@@ -62,8 +63,16 @@ function showQuestion(){
         const button = document.createElement("button"); // creates a button tag and saves it as var button.
         button.innerHTML = answer.text; // add text of an answer to the button element index.html.
         button.classList.add("btn"); // we add class btn to a button element.
-        answerButton.appendChild(button); // we display button in answer-buttons the question and answers.
+        answerButtons.appendChild(button); // we display button in answer-buttons the question and answers.
     })
+}
+
+// removes all the previous children of answerButtons var.
+function resetState() {
+    nextButton.style.display = "none";
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
 }
 
 startQuiz(); // it will call the startQuiz function and set the index and score to 0; then it will call the showQuestion with the question number and answer buttons.
